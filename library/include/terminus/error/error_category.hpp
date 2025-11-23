@@ -22,7 +22,7 @@
 // Terminus Image Libraries
 #include "Error_Code.hpp"
 
-namespace tmns::core::error {
+namespace tmns::error {
 
 /**
  * Custom WarpCore error category for mapping all error codes to custom error types.
@@ -103,8 +103,8 @@ class Error_Category : public tmns::outcome::Error_Category<Error_Category>
 // Associate the custom error category with your custom error code
 TERMINUS_OUTCOME_ASSOCIATE_ERROR_CATEGORY( Error_Category, Error_Code )
 
-} // End of tmns::core::error namespace
+} // End of tmns::error namespace
 
 // Define a convenient alias for the `Result` type that uses your error codes
 template <class ValueT>
-using Result = tmns::outcome::Result<ValueT,tmns::core::error::Error_Code>;
+using Result = tmns::outcome::Result<ValueT,tmns::error::Error_Code>;

@@ -17,10 +17,10 @@
 // Terminus Libraries
 #include <terminus/outcome/macros.hpp>
 
-namespace tmns::core::error {
+namespace tmns::error {
 
 /**
- * Custom Error_Code enumeration for all WarpCore issues.
+ * Custom Error_Code enumeration for all Terminus issues.
 */
 enum class Error_Code { SUCCESS               =  0,
                         UNKNOWN               =  1,
@@ -47,11 +47,13 @@ enum class Error_Code { SUCCESS               =  0,
                         OUT_OF_BOUNDS         = 22,
                         OUT_OF_MEMORY         = 23,
                         PARSING_ERROR         = 24,
-                        UNDEFINED             = 25,
-                        UNINITIALIZED         = 26,
+                        SCHEMA_NOT_FOUND      = 25,
+                        TYPE_MISMATCH         = 26,
+                        UNDEFINED             = 27,
+                        UNINITIALIZED         = 28,
 };
 
-} // End of tmns::core::error namespace
+} // End of tmns::error namespace
 
 // Mark the error code type so that the library knows it is part of the framework
-TERMINUS_OUTCOME_MARK_ENUM( tmns::core::error::Error_Code )
+TERMINUS_OUTCOME_MARK_ENUM( tmns::error::Error_Code )

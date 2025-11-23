@@ -17,11 +17,9 @@
 #  Set CMake Version
 cmake_minimum_required( VERSION 4.0.0 FATAL_ERROR )
 
-
 #  Configure Conan Search Paths
 include( "${CMAKE_BINARY_DIR}/conan_toolchain.cmake" )
 set( CMAKE_FIND_PACKAGE_PREFER_CONFIG TRUE )
-
 
 # Set the Project-Name
 project( ${CONAN_PKG_NAME}
@@ -30,7 +28,9 @@ project( ${CONAN_PKG_NAME}
             DESCRIPTION  ${CONAN_PKG_DESCRIPTION}
             LANGUAGES    CXX )
 
-#  Define C++ Level
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+#  Set C++ Standard
 set( CMAKE_CXX_STANDARD 23 )
 set( CMAKE_CXX_STANDARD_REQUIRED ON )
 
@@ -43,7 +43,7 @@ include( terminus_cmake )
 # Force the high warning preset published by terminus_cmake across this project
 set( TERMINUS_CXX_FLAGS ${TERMINUS_CXX_FLAGS_HIGH} CACHE STRING "Terminus warning preset" FORCE )
 
-#  Treat warnings as errors
+# Treat warnings as errors globally
 set( CMAKE_COMPILE_WARNING_AS_ERROR ON )
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror" )
 
@@ -55,8 +55,12 @@ set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror" )
 string(TIMESTAMP PROJECT_BUILD_DATE "%Y-%m-%d %H:%M:%S" )
 
 configure_file( ${CMAKE_SOURCE_DIR}/templates/exports.hpp.in
-                ${CMAKE_BINARY_DIR}/include/terminus/outcome/exports.hpp )
+                ${CMAKE_BINARY_DIR}/library/include/terminus/outcome/exports.hpp )
 
+
+#-------------------------------------#
+#-          Public Headers           -#
+#-------------------------------------#
 set( TERMINUS_OUTCOME_PUBLIC_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/library/include" )
 set( TERMINUS_OUTCOME_PUBLIC_HEADERS
     terminus/error.hpp
@@ -104,11 +108,6 @@ if( TERMINUS_OUTCOME_ENABLE_TESTS )
      add_subdirectory( test/unit )
 endif()
 
-#  We will want documentation in the future
-#if( TERMINUS_OUTCOME_ENABLE_DOCS or TERMINUS_ENABLE_DOCS )
-#    add_subdirectory(docs)
-#endif()
-
 #  Install Header Files
-install( DIRECTORY ${PROJECT_BINARY_DIR}/include/terminus DESTINATION include )
+install( DIRECTORY ${PROJECT_BINARY_DIR}/library/include/terminus DESTINATION include )
 install( DIRECTORY ${TERMINUS_OUTCOME_PUBLIC_INCLUDE_DIR}/terminus DESTINATION include )
