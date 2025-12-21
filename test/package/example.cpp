@@ -14,6 +14,7 @@
  */
 
 // Terminus Libraries
+#include <terminus/error.hpp>
 #include <terminus/outcome.hpp>
 
 // C++ Libraries
