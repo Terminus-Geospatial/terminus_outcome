@@ -12,7 +12,7 @@
 #    Author:  Marvin Smith
 #    Date:    7/8/2023
 #
-from conan import ConanFile, tools
+from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeToolchain, CMakeDeps
 from conan.tools.files import copy
 
@@ -37,7 +37,7 @@ class ConanProject(ConanFile):
     default_options = { "with_tests": True,
                         "with_docs": True,
                         "with_coverage": False,
-                        "boost/*:shared": False }
+                        "boost/*:shared": True }
 
     settings = "os", "compiler", "build_type", "arch"
 
@@ -80,7 +80,6 @@ class ConanProject(ConanFile):
 
         # This will also copy the "include" folder
         copy(self, "*.h", self.source_folder, self.package_folder)
-        self.cpp_info.libs = tools.files.collect_libs(self)
 
     def package_info(self):
         # For header-only packages, libdirs and bindirs are not used
@@ -90,7 +89,7 @@ class ConanProject(ConanFile):
 
     def export_sources(self):
 
-        for p in [ "CMakeLists.txt", "include/*", "test/*", "README.md" ]:
+        for p in [ "CMakeLists.txt", "library/include/*", "templates/*", "test/*", "README.md" ]:
             copy( self,
                   p,
                   self.recipe_folder,
