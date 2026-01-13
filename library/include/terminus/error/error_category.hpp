@@ -8,19 +8,19 @@
 /*                                                                                    */
 /**************************** INTELLECTUAL PROPERTY RIGHTS ****************************/
 /**
- * @file    Error_Category.hpp
+ * @file    error_category.hpp
  * @author  Marvin Smith
  * @date    7/10/2023
 */
 #pragma once
 
 // Terminus Libraries
-#include <terminus/outcome/Error_Category.hpp>
-#include <terminus/outcome/Result.hpp>
+#include <terminus/outcome/error_category.hpp>
+#include <terminus/outcome/result.hpp>
 #include <terminus/outcome/macros.hpp>
 
 // Terminus Image Libraries
-#include "Error_Code.hpp"
+#include "error_code.hpp"
 
 namespace tmns::error {
 
