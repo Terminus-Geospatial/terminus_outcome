@@ -86,6 +86,7 @@ class ConanProject(ConanFile):
          # so it's necessary to set those as empty.
          self.cpp_info.bindirs = []
          self.cpp_info.libdirs = []
+         self.cpp_info.includedirs = ["include"]
 
     def export_sources(self):
 
