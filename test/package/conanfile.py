@@ -10,13 +10,13 @@ from conan.tools.build import can_run
 class OutcomePackageTestConan( ConanFile ):
 
     name = "terminus_outcome_test"
-    version = "1.0.1"
+    version = "1.0.5"
     description = "Test for Terminus Outcome Package"
 
     settings = "os", "compiler", "build_type", "arch"
 
     def requirements(self):
-        self.requires("terminus_outcome/1.0.1")
+        self.requires("terminus_outcome/1.0.5")
 
     def _configure_cmake(self):
         cmake = CMake(self)

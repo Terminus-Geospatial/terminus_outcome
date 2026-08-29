@@ -66,6 +66,20 @@ cd build
 ctest --output-on-failure
 ```
 
+## Docker Build and Test (RHEL 10)
+
+Two RHEL 10 container definitions are provided for CI/GitHub Actions.
+
+```bash
+# Build, test, and upload the package to a Conan remote
+docker build -f docker/Dockerfile.rhel10.build \
+  -t terminus-outcome-build \
+  --build-arg CONAN_REMOTE=terminus-conan \
+  --build-arg CONAN_LOGIN_USERNAME=demo \
+  --build-arg CONAN_PASSWORD=demo \
+  .
+```
+
 ### Conan Package Verification
 
 ```bash
@@ -136,4 +150,8 @@ int main()
 
 - `docs/developers.md` – deeper dive into developer workflow.
 - `test/package/example.cpp` – end-to-end sample showing macro usage.
+
+## TODOs
+
+- [ ] **Replace hardcoded Conan credentials in Dockerfiles** — `docker/Dockerfile.rhel10.build` currently uses `ARG CONAN_LOGIN_USERNAME`/`CONAN_PASSWORD` defaults. Add a credential helper in `terminus_setup` that reads from an env-file or environment variables.
 
